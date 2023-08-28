@@ -48,26 +48,30 @@ class GameComponent extends Component
         }
 
         $this->js(<<<'JS'
-            setTimeout(()=>{$wire.deselectCard($key);}, 4000);
-            setTimeout(()=>{$wire.resetGame();}, 5000);
+            setTimeout(()=>{$wire.deselectCard();}, 4000);
         JS);
     }
 
-    public function deselectCard($key)
+    public function deselectCard()
     {
         if (! $this->selected) {
             return;
         }
 
-        $this->selected = true;
+        foreach ($this->cards as $key => $card){
+            if ($card['selected']) {
+                $this->cards[$key]['selected'] = false;
+            }
+        }
 
-        $this->cards[$key]['selected'] = false;
+        $this->js(<<<'JS'
+            setTimeout(()=>{$wire.resetGame();}, 2000);
+        JS);
     }
 
     public function resetGame()
     {
         $this->shuffle();
-        $this->selected = false;
     }
 
     public function shuffle()
@@ -101,5 +105,6 @@ class GameComponent extends Component
         shuffle($selectedCards);
 
         $this->cards = $selectedCards;
+        $this->selected = false;
     }
 }
