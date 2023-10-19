@@ -6,7 +6,7 @@
 ## Installation
 
 ```bash
-git clone https://github.com/RhysLees/AceOfSpaces.git
+git clone https://github.com/RhysLees/AceOfSpades.git
 ```
 
 ```bash
