@@ -9,6 +9,7 @@ class GameComponent extends Component
 {
     public array $cards;
     public bool $selected = false;
+    public bool $sound = true;
 
     public function mount()
     {
@@ -19,6 +20,21 @@ class GameComponent extends Component
     public function render()
     {
         return view('livewire.game-component');
+    }
+
+    public function toggleSound()
+    {
+        $this->sound = ! $this->sound;
+
+        if ($this->sound) {
+            $this->js(<<<'JS'
+                Howler.mute(false);
+            JS);
+        }else{
+            $this->js(<<<'JS'
+                Howler.mute(true);
+            JS);
+        }
     }
 
     public function selectCard($key)
