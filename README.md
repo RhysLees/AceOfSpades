@@ -11,15 +11,19 @@ cd AceOfSpaces
 ```
 
 ```bash
+cp .env.example .env && php artisan key:generate 
+```
+
+```bash
 composer install
 ```
 
 ```bash
-npm install
+npm install && npm run build
 ```
 
 ```bash
-npm run build
+php artisan native:install
 ```
 
 ```bash

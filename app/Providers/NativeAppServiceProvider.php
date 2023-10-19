@@ -14,11 +14,13 @@ class NativeAppServiceProvider implements ProvidesPhpIni
     public function boot(): void
     {
         Window::open()
+            ->title('AceOfSpades')
             ->width(1000)
             ->height(800)
             ->minWidth(1000)
             ->minHeight(800)
-            ->rememberState();
+            ->rememberState()
+            ->showDevTools(false);
     }
 
     /**
